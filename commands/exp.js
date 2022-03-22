@@ -21,14 +21,31 @@ module.exports = {
                     const json = response.data[0];
                     var points = nwc.numberWithCommas(json.exp_points);
                     var level = json.current_level;
+                    var nextLevel = level + 1;
+                    var currentPoints = json.exp_points
+
+                    var pointsForLevelUp = ((nextLevel/0.1) * (nextLevel/0.1))
+
+                    var pointsNeeded = pointsForLevelUp - currentPoints;
+                    console.log(pointsForLevelUp);
+
+                    var percentProgress = Math.floor((currentPoints/pointsForLevelUp) * 100)
+                    console.log(percentProgress);
+
+                    var avgXpPerMsg = 20;
+                    var estNumOfMsgs = Math.ceil((pointsNeeded/20))
 
                     //console.log(points)
 
                     const expEmbed = new MessageEmbed()
                     expEmbed.setColor('#0099ff');
                     expEmbed.setTitle(`:bar_chart: ${interaction.user.tag}'s Stats`);
-                    expEmbed.addField(`Current Level`, `${level}`);
-                    expEmbed.addField(`Current XP:`, `${points}xp`);
+                    expEmbed.addField(`Current Level`, `${level}`, true);
+                    expEmbed.addField(`Current XP`, `${points}xp`, true);
+                    expEmbed.addField(`XP to next lvl`, `${nwc.numberWithCommas(pointsNeeded)}xp`);
+                    expEmbed.addField(`% to next lvl`, `${percentProgress}%`, true);
+                    expEmbed.addField(`Est. # of Messages Until Next lvl`, `${estNumOfMsgs}`);
+                    expEmbed.setFooter({ text: 'Bot Created by Taylor Womack', iconURL: 'https://i.imgur.com/o95RO6a.jpg'})
 
                     interaction.reply({ embeds: [ expEmbed ] });
                 })

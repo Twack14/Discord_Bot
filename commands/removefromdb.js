@@ -23,7 +23,7 @@ module.exports = {
 		try {
 			axios.delete(fullUrl)
 				.then(function (response) {
-					//console.log(response)
+					console.log(response)
 					interaction.reply(`User was removed from the database.`)
 				})
 		} catch (err) {
