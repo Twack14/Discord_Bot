@@ -2,9 +2,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const fs = require('node:fs');
-const { Client, Collection, Intents } = require('discord.js');
+const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
 const { token } = require('./config.json');
 const update = require('./db_functions/updatePointsLevelUp')
+
+
 
 // Create a new client instance
 const client = new Client({ 
@@ -24,14 +26,37 @@ for (const file of commandFiles) {
 }
 
 // When the client is ready, run this code (only once)
-client.once('ready', c => {
+client.once('ready', async c => {	
 	console.log(`Ready! Logged in as ${c.user.tag}`);
+
+	const GUILDS = client.guilds.cache.map((guild) => guild);
+	const all_fetchCommands = await GUILDS[0].commands.fetch();
+	const removeUserCommand = all_fetchCommands.find(command => command.name === 'removefromdb')
+	const removeCmdID = removeUserCommand.permissions.commandId;
+
+	const fullPermissions = [
+		{
+			id: removeCmdID,
+			permissions: [
+				{
+					id: '668690950335365141',
+					type: 'USER',
+					permission: true,
+				},
+			]
+		}
+	];
+
+	await GUILDS[0].commands.permissions.set({ fullPermissions });
+
 });
 
+
+//trigger points update everytime a message is sent
 client.on('messageCreate', async (message) => {
 	if (message.author.bot) return;
-	update.updatePointsLevelUp(message.author.tag);
-	//console.log(`${message.author.tag} in #${message.channel.name} sent a message: ${message.content}`);
+	var tag = message.author.tag
+	update.updatePointsLevelUp(tag, message);
 })
 
 client.on('interactionCreate', async interaction => {
