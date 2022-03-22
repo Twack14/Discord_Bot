@@ -9,11 +9,12 @@ const update = require('./db_functions/updatePointsLevelUp')
 
 
 // Create a new client instance
-const client = new Client({ 
+const client = new Client({
 	intents: [
 		Intents.FLAGS.GUILDS,
 		Intents.FLAGS.GUILD_MESSAGES
-	] });
+	]
+});
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -26,7 +27,7 @@ for (const file of commandFiles) {
 }
 
 // When the client is ready, run this code (only once)
-client.once('ready', async c => {	
+client.once('ready', async c => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
 
 	const GUILDS = client.guilds.cache.map((guild) => guild);
@@ -60,7 +61,7 @@ client.on('messageCreate', async (message) => {
 })
 
 client.on('interactionCreate', async interaction => {
-    console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`);
+	console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`);
 	if (!interaction.isCommand()) return;
 
 	const command = client.commands.get(interaction.commandName);
@@ -74,7 +75,7 @@ client.on('interactionCreate', async interaction => {
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 
-	
+
 });
 
 // Login to Discord with your client's token
