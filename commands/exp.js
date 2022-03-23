@@ -18,22 +18,26 @@ module.exports = {
             axios.get(fullUrl)
                 .then(function (response) {
 
+                    if (response.data.length === 0) {
+                        return interaction.reply('You are not registered in the database! Use `/register` to start earning XP! ')
+                    }
                     const json = response.data[0];
                     var points = nwc.numberWithCommas(json.exp_points);
                     var level = json.current_level;
                     var nextLevel = level + 1;
                     var currentPoints = json.exp_points
 
-                    var pointsForLevelUp = ((nextLevel/0.1) * (nextLevel/0.1))
+
+                    var pointsForLevelUp = ((nextLevel / 0.1) * (nextLevel / 0.1))
 
                     var pointsNeeded = pointsForLevelUp - currentPoints;
                     console.log(pointsForLevelUp);
 
-                    var percentProgress = Math.floor((currentPoints/pointsForLevelUp) * 100)
+                    var percentProgress = Math.floor((currentPoints / pointsForLevelUp) * 100)
                     console.log(percentProgress);
 
                     var avgXpPerMsg = 20;
-                    var estNumOfMsgs = Math.ceil((pointsNeeded/20))
+                    var estNumOfMsgs = Math.ceil((pointsNeeded / 20))
 
                     //console.log(points)
 
@@ -45,12 +49,12 @@ module.exports = {
                     expEmbed.addField(`XP to next lvl`, `${nwc.numberWithCommas(pointsNeeded)}xp`);
                     expEmbed.addField(`% to next lvl`, `${percentProgress}%`, true);
                     expEmbed.addField(`Est. # of Messages Until Next lvl`, `${estNumOfMsgs}`);
-                    expEmbed.setFooter({ text: 'Bot Created by Taylor Womack', iconURL: 'https://i.imgur.com/o95RO6a.jpg'})
+                    expEmbed.setFooter({ text: 'Bot Created by Taylor Womack', iconURL: 'https://i.imgur.com/o95RO6a.jpg' })
 
-                    interaction.reply({ embeds: [ expEmbed ] });
+                    interaction.reply({ embeds: [expEmbed] });
                 })
         } catch (err) {
             return interaction.reply('You are not registered in the database. Use the **/register** command to register yourself in the database to start earning points!')
         }
-	},
+    },
 };

@@ -12,8 +12,8 @@ module.exports = {
 		)
 		.setDefaultPermission(false),
 	async execute(interaction) {
-		var id = interaction.options.getUser('user')
-		id = id.tag
+		var userId = interaction.options.getUser('user')
+		id = userId.tag
 		id = encodeURIComponent(id);
 		console.log(id);
 
@@ -24,7 +24,7 @@ module.exports = {
 			axios.delete(fullUrl)
 				.then(function (response) {
 					console.log(response)
-					interaction.reply(`User was removed from the database.`)
+					interaction.reply(`User ${userId} was removed from the database.`)
 				})
 		} catch (err) {
 			//console.log(err);
