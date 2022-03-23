@@ -31,10 +31,10 @@ module.exports = {
                     var pointsForLevelUp = ((nextLevel / 0.1) * (nextLevel / 0.1))
 
                     var pointsNeeded = pointsForLevelUp - currentPoints;
-                    console.log(pointsForLevelUp);
+                    //console.log(pointsForLevelUp);
 
                     var percentProgress = Math.floor((currentPoints / pointsForLevelUp) * 100)
-                    console.log(percentProgress);
+                    //console.log(percentProgress);
 
                     var avgXpPerMsg = 20;
                     var estNumOfMsgs = Math.ceil((pointsNeeded / 20))
