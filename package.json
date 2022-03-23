@@ -18,6 +18,7 @@
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "node-valorant-api": "^0.5.0",
     "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "random": "^3.0.6",
