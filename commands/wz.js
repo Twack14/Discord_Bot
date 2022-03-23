@@ -3,6 +3,7 @@ const { MessageEmbed } = require('discord.js');
 var axios = require('axios')
 var { exampleEmbed } = require('../embeds/wzEmbed')
 
+//login to the CoD API
 const { login } = require('call-of-duty-api');
 login(process.env.SSO_TOKEN);
 
