@@ -4,7 +4,7 @@ var axios = require('axios')
 var { exampleEmbed } = require('../embeds/wzEmbed')
 
 const { login } = require('call-of-duty-api');
-login('MTE4OTE4NjU0OTYwMTQzODcyNjU6MTY0OTI4MDU3NDU2NzpkMjM4Mjk0MTM4ZWI3YTIxNjY2NDdkOTc1ZjNlODIyNA');
+login(process.env.SSO_TOKEN);
 
 const { platforms } = require('call-of-duty-api');
 const { Warzone } = require('call-of-duty-api');
