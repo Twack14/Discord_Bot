@@ -43,33 +43,6 @@ module.exports = {
             console.log(err)
             interaction.reply('failed');
         }
-
-        // var options = {
-        //     method: 'GET',
-        //     url: `https://call-of-duty-modern-warfare.p.rapidapi.com/warzone/${username1}/${platform}`,
-        //     headers: {
-        //       'X-RapidAPI-Host': 'call-of-duty-modern-warfare.p.rapidapi.com',
-        //       'X-RapidAPI-Key': '249114ebcemshb05d81fd2b40f99p1b51a4jsn1e8b7283c612'
-        //     }
-        //   };
-
-        //   axios.request(options).then(function (response) {
-        //     const output = response.data;
-
-        //     try {
-        //     fillFields(username, output.br.wins, output.br.kills, output.br.deaths, output.br.downs, output.br.kdRatio, output.br.topTwentyFive, output.br.topTen, output.br.topFive, output.br.gamesPlayed);
-        //     //interaction.reply(`test`);
-        //     interaction.reply({ embeds: [ exampleEmbed ] });
-        //     } catch (err) {
-        //         console.log(err);
-        //         interaction.reply(`Could not find data for ${username}`);
-        //     }
-        // }).catch(function (error) {
-        //     console.error(error);
-        // });
-
-        
-
         
     },
 };
