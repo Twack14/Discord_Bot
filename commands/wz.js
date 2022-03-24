@@ -36,14 +36,14 @@ module.exports = {
         try {
             let data = await Warzone.fullData(username, platform)
             if (data.status === 'error') {
-                return interaction.reply(`Could not find data for ${username}. Activision's API is showing issues for battle.net data retrieval. I will keep you posted when updates happen.`);
+                return interaction.reply(`Could not find data for ${username}.`);
             }
             const output = data.data.lifetime.mode.br.properties
             fillFields(username, output.wins, output.kills, output.deaths, output.downs, output.kdRatio, output.topTwentyFive, output.topTen, output.topFive, output.gamesPlayed);
             interaction.reply({ embeds: [ exampleEmbed ] })
         } catch (err) {
             console.log(err)
-            interaction.reply(`Could not find data for ${username}. Activision's API is showing issues for battle.net data retrieval. I will keep you posted when updates happen.`);
+            interaction.reply(`Could not find data for ${username}.`);
         }
         
     },
