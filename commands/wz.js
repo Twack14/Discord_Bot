@@ -27,7 +27,6 @@ module.exports = {
     async execute(interaction) {
 
         var username = interaction.options.getString('username')
-        username1 = encodeURIComponent(username);
         const platform = interaction.options.getString('platform')
 
         if ((platform !== 'psn') && (platform !== 'xbl') && (platform !== 'battle') && (platform !== 'steam')) {
@@ -35,8 +34,7 @@ module.exports = {
         }
 
         try {
-            let data = await Warzone.fullData(username1, platform)
-
+            let data = await Warzone.fullData(username, platform)
             if (data.status === 'error') {
                 return interaction.reply(`Could not find data for ${username}. Activision's API is showing issues for battle.net data retrieval. I will keep you posted when updates happen.`);
             }
