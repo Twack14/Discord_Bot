@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-const fs = require('fs');
+const fs = require('node:fs');
 const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
 const update = require('./db_functions/updatePointsLevelUp')
 
